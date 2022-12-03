@@ -1,0 +1,14 @@
+{
+  "name": "talktive",
+  "version": "1.0.0",
+  "description": "A desktop chatting app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Chinmay Gokhale",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^22.0.0"
+  }
+}
