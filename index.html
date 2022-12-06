@@ -5,16 +5,17 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
+      content="default-src 'self' https://banner2.cleanpng.com/ 'unsafe-inline';script-src 'self'; style-src 'unsafe-inline'"
     />
     <meta
       http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
+      content="default-src 'self'; script-src 'self'; style-src 'unsafe-inline'"
     />
-    <title>Hello from Electron renderer!</title>
+    <title>TalkTive</title>
   </head>
   <body>
-    <h1>Hello from Electron renderer!</h1>
-    <p>👋</p>
+    <div id="talktive">
+    </div>
   </body>
+  <script src="./build/js/app.js"></script>
 </html>

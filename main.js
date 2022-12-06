@@ -1,4 +1,7 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Notification, ipcMain } = require('electron')
+const path = require('path');
+
+const isDev = !app.isPackaged;
 
 function createMainWindow(){
 
@@ -8,11 +11,26 @@ function createMainWindow(){
         height: 600,
         backgroundColor: "white",
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: false,
+            worldSafeExecuteJavaScript: true,
+            contextIsolation: true,
+            preload: path.join(__dirname, 'preload.js')
         }        
     })
 
     window.loadFile('index.html');
+
+    if(isDev){
+        window.webContents.openDevTools();
+    }
+    
+}
+
+if(isDev){
+    require('electron-reload')(__dirname, {
+        electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
+    })
+
 }
 
 app.whenReady().then(createMainWindow);
@@ -32,3 +50,10 @@ app.on('activate', () => {
         createMainWindow();
     }
 })
+
+ipcMain.on('notify', (_, message) => {
+
+    new Notification({title: 'Talktive', body: message}).show();
+
+})
+
