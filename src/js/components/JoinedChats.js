@@ -12,7 +12,7 @@ function JoinedChats() {
       <ul className="items">
         <li
           onClick={() => {
-            history.push("/chat");
+            history.push("/chat/1");
           }}
           className="item"
         >
@@ -29,7 +29,7 @@ function JoinedChats() {
         </li>
         <li
           onClick={() => {
-            history.push("/chat");
+            history.push("/chat/2");
           }}
           className="item"
         >
@@ -46,7 +46,7 @@ function JoinedChats() {
         </li>
         <li
           onClick={() => {
-            history.push("/chat");
+            history.push("/chat/3");
           }}
           className="item"
         >
@@ -63,7 +63,7 @@ function JoinedChats() {
         </li>
         <li
           onClick={() => {
-            history.push("/chat");
+            history.push("/chat/4");
           }}
           className="item"
         >

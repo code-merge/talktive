@@ -14,7 +14,7 @@ export default function App() {
       <NavBar />
       <div className="content-wrapper">
         <Switch>
-          <Route path="/chat">
+          <Route path="/chat/:id">
             <Chat />
           </Route>
           <Route path="/settings">
@@ -26,7 +26,7 @@ export default function App() {
           <Route path="/register">
             <Register />
           </Route>
-          <Route path="/">
+          <Route path="/" exact>
             <Home />
           </Route>
         </Switch>
