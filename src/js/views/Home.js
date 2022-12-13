@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AvailableChats from "../components/AvailableChats";
 import JoinedChats from "../components/JoinedChats";
 import ViewTitle from "../components/shared/ViewTitle";
+import BaseLayout, { withBaseLayout } from "../layouts/baseLayout";
 
 function Home() {
   const dispatch = useDispatch();
@@ -29,4 +30,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default withBaseLayout(Home);

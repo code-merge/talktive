@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import ChatMessages from "../components/ChatMessages";
 import ChatUserList from "../components/ChatUserList";
 import ViewTitle from "../components/shared/ViewTitle";
+import BaseLayout, { withBaseLayout } from "../layouts/baseLayout";
 
 function Chat() {
   const { id } = useParams();
@@ -23,4 +24,4 @@ function Chat() {
   );
 }
 
-export default Chat;
+export default withBaseLayout(Chat, { backEnabled: true });

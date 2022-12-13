@@ -1,43 +1,85 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Home from "./views/Home";
 
-import { Provider } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
-import NavBar from "./components/NavBar";
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import Settings from "./views/Settings";
-import Login from "./views/Login";
-import Register from "./views/Register";
-import Chat from "./views/Chat";
-import configStore from "./store";
 
-const store = configStore();
+import Chat from "./views/Chat";
+import Welcome from "./views/Welcome";
+
+import { listenAuthChanges } from "./actions/authActions";
+import StoreProvider from "./store/StoreProvider";
+import LoadingView from "./components/shared/LoadingView";
+
+function AuthRoute({ children, ...rest }) {
+  const user = useSelector(({ auth }) => auth.user);
+
+  const child = React.Children.only(children);
+
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        user ? (
+          React.cloneElement(child, { ...rest, ...props })
+        ) : (
+          <Redirect to="/" />
+        )
+      }
+    />
+  );
+}
+
+const ContentWrapper = ({ children }) => (
+  <div className="content-wrapper">{children} </div>
+);
+
+function TalktiveApp() {
+  const dispatch = useDispatch();
+
+  const isChecking = useSelector(({ auth }) => auth.isChecking);
+
+  useEffect(() => {
+    dispatch(listenAuthChanges());
+  }, [dispatch]);
+
+  if (isChecking) {
+    return <LoadingView />;
+  }
+
+  return (
+    <Router>
+      <ContentWrapper>
+        <Switch>
+          <Route path="/" exact>
+            <Welcome />
+          </Route>
+          <AuthRoute path="/chat/:id">
+            <Chat />
+          </AuthRoute>
+          <AuthRoute path="/settings">
+            <Settings />
+          </AuthRoute>
+          <AuthRoute path="/home">
+            <Home />
+          </AuthRoute>
+        </Switch>
+      </ContentWrapper>
+    </Router>
+  );
+}
 
 export default function App() {
   return (
-    <Provider store={store}>
-      <Router>
-        <NavBar />
-        <div className="content-wrapper">
-          <Switch>
-            <Route path="/chat/:id">
-              <Chat />
-            </Route>
-            <Route path="/settings">
-              <Settings />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/register">
-              <Register />
-            </Route>
-            <Route path="/" exact>
-              <Home />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
-    </Provider>
+    <StoreProvider>
+      <TalktiveApp />
+    </StoreProvider>
   );
 }

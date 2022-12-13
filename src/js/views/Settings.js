@@ -1,4 +1,5 @@
 import React from "react";
+import BaseLayout, { withBaseLayout } from "../layouts/baseLayout";
 
 function Settings() {
   return (
@@ -6,9 +7,7 @@ function Settings() {
       <div className="centered-container">
         <form className="centered-container-form">
           <div className="header">Adjust application settings</div>
-          <button type="button">
-            Notify Me
-          </button>
+          <button type="button">Notify Me</button>
           <div className="form-container">
             <div className="my-3">
               <div className="form-check">
@@ -46,4 +45,6 @@ function Settings() {
   );
 }
 
-export default Settings;
+export default withBaseLayout(Settings, {
+  backEnabled: true,
+});
