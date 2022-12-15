@@ -17,6 +17,7 @@ import Welcome from "./views/Welcome";
 import { listenAuthChanges } from "./actions/authActions";
 import StoreProvider from "./store/StoreProvider";
 import LoadingView from "./components/shared/LoadingView";
+import { listenToConnectionChanges } from "./actions/appActions";
 
 function AuthRoute({ children, ...rest }) {
   const user = useSelector(({ auth }) => auth.user);
@@ -45,10 +46,27 @@ function TalktiveApp() {
   const dispatch = useDispatch();
 
   const isChecking = useSelector(({ auth }) => auth.isChecking);
+  const isOnline = useSelector(({ app }) => app.isOnline);
 
   useEffect(() => {
-    dispatch(listenAuthChanges());
+    const unsubscribeFromAuth = dispatch(listenAuthChanges());
+
+    const unsubscribeFromConnection = dispatch(listenToConnectionChanges());
+
+    //Cleanup function to unsubscribe the above registered events
+    //This function will be executed when the component is UNMOUNTED
+
+    return function () {
+      unsubscribeFromAuth();
+      unsubscribeFromConnection();
+    };
   }, [dispatch]);
+
+  if (!isOnline) {
+    return (
+      <LoadingView message="It seems that there is no internet connection. Please try to reconnect ..." />
+    );
+  }
 
   if (isChecking) {
     return <LoadingView />;

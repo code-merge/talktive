@@ -7,13 +7,17 @@ import { useDispatch, useSelector } from "react-redux";
 import AvailableChats from "../components/AvailableChats";
 import JoinedChats from "../components/JoinedChats";
 import ViewTitle from "../components/shared/ViewTitle";
-import BaseLayout, { withBaseLayout } from "../layouts/baseLayout";
+import Notification from "../utils/notification";
+
+import { withBaseLayout } from "../layouts/baseLayout";
 
 function Home() {
   const dispatch = useDispatch();
   const chats = useSelector((state) => state.chats.items);
 
   useEffect(() => {
+    Notification.setup();
+
     dispatch(fetchChats());
   }, [dispatch]);
 
