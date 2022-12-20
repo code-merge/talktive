@@ -18,6 +18,7 @@ import { listenAuthChanges } from "./actions/authActions";
 import StoreProvider from "./store/StoreProvider";
 import LoadingView from "./components/shared/LoadingView";
 import { listenToConnectionChanges } from "./actions/appActions";
+import ChatCreate from "./views/ChatCreate";
 
 function AuthRoute({ children, ...rest }) {
   const user = useSelector(({ auth }) => auth.user);
@@ -81,6 +82,9 @@ function TalktiveApp() {
           </Route>
           <AuthRoute path="/chat/:id">
             <Chat />
+          </AuthRoute>
+          <AuthRoute path="/chatCreate">
+            <ChatCreate />
           </AuthRoute>
           <AuthRoute path="/settings">
             <Settings />

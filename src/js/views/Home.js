@@ -10,6 +10,7 @@ import ViewTitle from "../components/shared/ViewTitle";
 import Notification from "../utils/notification";
 
 import { withBaseLayout } from "../layouts/baseLayout";
+import { Link } from "react-router-dom";
 
 function Home() {
   const dispatch = useDispatch();
@@ -27,7 +28,11 @@ function Home() {
         <JoinedChats chats={chats} />
       </div>
       <div className="col-9 fh">
-        <ViewTitle text="Choose your Channel" />
+        <ViewTitle text="Choose your Channel">
+          <Link to={"/chatCreate"} className="btn btn-outline-primary btn-sm">
+            New
+          </Link>
+        </ViewTitle>
         <AvailableChats chats={chats} />
       </div>
     </div>
