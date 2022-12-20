@@ -1,6 +1,16 @@
 import React from "react";
 
 function AvailableChats({ chats }) {
+  const askForConfirmation = (chat) => {
+    const isConfirming = window.confirm(
+      `Do you want to join the chat: ${chat.name} ?`
+    );
+
+    if (isConfirming) {
+      alert("Joining the Chat!");
+    }
+  };
+
   return (
     <div className="container-fluid">
       <div className="row mt-3">
@@ -15,7 +25,10 @@ function AvailableChats({ chats }) {
               <div className="card-body">
                 <h5 className="card-title">{chat.name}</h5>
                 <p className="card-text">{chat.description}</p>
-                <button onClick={() => {}} className="btn btn-outline-primary">
+                <button
+                  onClick={() => askForConfirmation(chat)}
+                  className="btn btn-outline-primary"
+                >
                   Join Chat
                 </button>
               </div>

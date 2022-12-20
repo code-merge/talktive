@@ -1,7 +1,7 @@
 import db from "../db/firestore";
 import firebase from "firebase/app";
 
-const extractSnapshotData = (snapshot) =>
+const extractSnapshotData = snapshot =>
   snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 
 export const fetchChats = () =>

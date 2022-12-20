@@ -4,13 +4,10 @@ export const registerUser = (formData) => (dispatch) => {
   dispatch({ type: "AUTH_REGISTER_INIT" });
   return api
     .register(formData)
-    .then((_) => {
+    .then((user) => {
       dispatch({
         type: "AUTH_REGISTER_SUCCESS",
-        user: {
-          avatar:
-            "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png",
-        },
+        user,
       });
     })
     .catch((error) => {
@@ -25,13 +22,10 @@ export const loginUser = (formData) => (dispatch) => {
   dispatch({ type: "AUTH_LOGIN_INIT" });
   return api
     .login(formData)
-    .then((_) => {
+    .then((user) => {
       dispatch({
         type: "AUTH_LOGIN_SUCCESS",
-        user: {
-          avatar:
-            "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png",
-        },
+        user,
       });
     })
     .catch((error) => {
@@ -43,7 +37,10 @@ export const loginUser = (formData) => (dispatch) => {
 };
 
 export const logoutUser = () => (dispatch) => {
-  return api.logout().then((_) => dispatch({ type: "AUTH_LOGOUT_SUCCESS" }));
+  return api.logout().then((_) => {
+    dispatch({ type: "AUTH_LOGOUT_SUCCESS" });
+    dispatch({ type: "CHATS_FETCH_RESTART" });
+  });
 };
 
 export const listenAuthChanges = () => (dispatch) => {
