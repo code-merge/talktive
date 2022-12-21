@@ -1,13 +1,17 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { joinChat } from "../actions/chatActions";
 
 function AvailableChats({ chats }) {
+  const user = useSelector(({ auth }) => auth.user);
+  const dispatch = useDispatch();
   const askForConfirmation = (chat) => {
     const isConfirming = window.confirm(
       `Do you want to join the chat: ${chat.name} ?`
     );
 
     if (isConfirming) {
-      alert("Joining the Chat!");
+      dispatch(joinChat(chat, user.uid));
     }
   };
 
