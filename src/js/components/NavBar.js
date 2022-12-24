@@ -29,7 +29,7 @@ function NavBar({ backEnabled, view }) {
                 <img className="avatar mr-2" src={user.avatar}></img>
                 <span className="logged-in-user">Hi {user.username}</span>
                 <button
-                  onClick={() => dispatch(logoutUser())}
+                  onClick={() => dispatch(logoutUser(user.uid))}
                   className="btn btn-outline-danger ml-2"
                 >
                   Logout

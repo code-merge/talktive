@@ -47,13 +47,19 @@ export const joinChat = (chat, userId) => (dispatch) => {
 
 export const subscribeToChat = (chatId) => (dispatch) =>
   api.subscribeToChat(chatId, async (chat) => {
-
-    const joinedUsers = await Promise.all(chat.joinedUsers.map(async userRef => {
-
-      const userSnapshot = await userRef.get();
-      return {id: userSnapshot.id, ...userSnapshot.data()}
-    }))
+    const joinedUsers = await Promise.all(
+      chat.joinedUsers.map(async (userRef) => {
+        const userSnapshot = await userRef.get();
+        return { id: userSnapshot.id, ...userSnapshot.data() };
+      })
+    );
 
     chat.joinedUsers = joinedUsers;
     dispatch({ type: "CHAT_SET_ACTIVE_CHAT", chat });
+  });
+
+export const subscribeToProfile = (userId, chatId) => (dispatch) =>
+  api.subscribeToProfile(userId, user => {
+    console.log("Profile changed");
+    dispatch({ type: "CHAT_UPDATE_USER_STATE", user, chatId });
   });

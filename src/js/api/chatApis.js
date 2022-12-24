@@ -34,3 +34,11 @@ export const subscribeToChat = (chatID, onSubscribe) =>
       const chat = { id: snapshot.id, ...snapshot.data() };
       onSubscribe(chat);
     });
+
+export const subscribeToProfile = (userID, onSubscribe) =>
+  db
+    .collection("profiles")
+    .doc(userID)
+    .onSnapshot((snapshot) => {
+      onSubscribe(snapshot.data());
+    });

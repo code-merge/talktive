@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Home from "./views/Home";
 
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   HashRouter as Router,
@@ -19,6 +19,7 @@ import StoreProvider from "./store/StoreProvider";
 import LoadingView from "./components/shared/LoadingView";
 import { listenToConnectionChanges } from "./actions/appActions";
 import ChatCreate from "./views/ChatCreate";
+import { checkUserConnection } from "./actions/connectionAction";
 
 function AuthRoute({ children, ...rest }) {
   const user = useSelector(({ auth }) => auth.user);
@@ -48,10 +49,10 @@ function TalktiveApp() {
 
   const isChecking = useSelector(({ auth }) => auth.isChecking);
   const isOnline = useSelector(({ app }) => app.isOnline);
+  const user = useSelector(({ auth }) => auth.user);
 
   useEffect(() => {
     const unsubscribeFromAuth = dispatch(listenAuthChanges());
-
     const unsubscribeFromConnection = dispatch(listenToConnectionChanges());
 
     //Cleanup function to unsubscribe the above registered events
@@ -62,6 +63,17 @@ function TalktiveApp() {
       unsubscribeFromConnection();
     };
   }, [dispatch]);
+
+  useEffect(() => {
+    let unsubscribeFromUserConnection;
+    if (user?.uid) {
+      unsubscribeFromUserConnection = dispatch(checkUserConnection(user.uid));
+    }
+
+    return () => {
+      unsubscribeFromUserConnection && unsubscribeFromUserConnection();
+    };
+  }, [dispatch, user]);
 
   if (!isOnline) {
     return (
