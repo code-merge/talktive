@@ -9,6 +9,14 @@ export default (store) => (next) => (action) => {
         body: action.isOnline ? "Online" : "Offline",
       });
     }
+    case "AUTH_LOGOUT_SUCCESS": {
+      const { regMessageSub } = store.getState().chats;
+      if (regMessageSub) {
+        Object.keys(regMessageSub).forEach((messageSubKey) => {
+          regMessageSub[messageSubKey]();
+        });
+      }
+    }
   }
 
   next(action);
