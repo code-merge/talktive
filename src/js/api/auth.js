@@ -2,9 +2,9 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import db from "../db/firestore";
 
-export const createUserProfiles = (userProfile) => {
+export const createUserProfiles = (userProfile) => 
   db.collection("profiles").doc(userProfile.uid).set(userProfile);
-};
+
 
 export const getUserProfile = (uid) =>
   db
@@ -40,10 +40,10 @@ export const login = async ({ email, password }) => {
   return userProfile;
 };
 
-export const logout = () => {
+export const logout = () =>
   firebase.auth().signOut();
-};
 
-export const onAuthStateChanged = (onAuth) => {
+
+export const onAuthStateChanged = (onAuth) => 
   firebase.auth().onAuthStateChanged(onAuth);
-};
+

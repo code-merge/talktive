@@ -9,15 +9,20 @@ import appMiddleware from "./middleware/appMiddleware";
 
 function configStore() {
   const middlewares = [thunkMiddleware, appMiddleware];
+  const mainReducer = combineReducers({
+    chats: chatReducer,
+    auth: authReducer,
+    app: appReducer,
+  });
 
-  const store = createStore(
-    combineReducers({
-      chats: chatReducer,
-      auth: authReducer,
-      app: appReducer,
-    }),
-    applyMiddleware(...middlewares)
-  );
+  const rootReducer = (state, action) => {
+    if (action.type === "AUTH_LOGOUT_SUCCESS") {
+      state = undefined;
+    }
+    return mainReducer(state, action);
+  };
+
+  const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
   return store;
 }

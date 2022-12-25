@@ -59,7 +59,56 @@ export const subscribeToChat = (chatId) => (dispatch) =>
   });
 
 export const subscribeToProfile = (userId, chatId) => (dispatch) =>
-  api.subscribeToProfile(userId, user => {
+  api.subscribeToProfile(userId, (user) => {
     console.log("Profile changed");
     dispatch({ type: "CHAT_UPDATE_USER_STATE", user, chatId });
   });
+
+export const sendChatMessage = (message, chatId) => (dispatch, getState) => {
+  const newMessage = { ...message };
+  const { user } = getState().auth;
+  const userRef = db.doc(`profiles/${user.uid}`);
+  newMessage.author = userRef;
+
+  return api
+    .sendChatMessage(newMessage, chatId)
+    .then((_) => dispatch({ type: "CHATS_MESSAGE_SENT" }));
+};
+
+export const subscribeToMessage = (chatId) => (dispatch) => {
+  return api.subscribeToMessage(chatId, async (messages) => {
+    const chatMessages = messages.map((changedMessage) => {
+      if (changedMessage.type === "added") {
+        return { id: changedMessage.doc.id, ...changedMessage.doc.data() };
+      }
+    });
+
+    const messagesWithAuthor = [];
+    const cashedUser = {};
+
+    for await (let message of chatMessages) {
+      if (cashedUser[message.author.uid]) {
+        message.author = cashedUser[message.author.uid];
+      } else {
+        const userSnapshot = await message.author.get();
+
+        cashedUser[userSnapshot.id] = userSnapshot.data();
+
+        message.author = cashedUser[userSnapshot.id];
+      }
+      messagesWithAuthor.push(message);
+    }
+
+    return dispatch({
+      type: "CHAT_SET_MESSAGES",
+      messages: messagesWithAuthor,
+      chatId,
+    });
+  });
+};
+
+export const registerMessageSubscription = (chatId, messageSubscription) => ({
+  type: "CHAT_REG_MESSAGE_SUB",
+  sub: messageSubscription,
+  chatId,
+});

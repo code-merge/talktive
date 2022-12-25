@@ -2,24 +2,40 @@ import React, { useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useParams } from "react-router-dom";
-import { subscribeToChat, subscribeToProfile } from "../actions/chatActions";
+import {
+  registerMessageSubscription,
+  sendChatMessage,
+  subscribeToChat,
+  subscribeToMessage,
+  subscribeToProfile,
+} from "../actions/chatActions";
 
 import ChatMessages from "../components/ChatMessages";
 import ChatUserList from "../components/ChatUserList";
 import ViewTitle from "../components/shared/ViewTitle";
 import LoadingView from "../components/shared/LoadingView";
 import { withBaseLayout } from "../layouts/baseLayout";
+import SendMessage from "../components/SendMessage";
 
 function Chat() {
   const { id } = useParams();
   //We will preserve teh values in-between renders of component
   const peopleWatchers = useRef({});
+  const endOfMessageList = useRef();
   const dispatch = useDispatch();
   const activeChat = useSelector(({ chats }) => chats.activeChats[id]);
+  const messages = useSelector(({ chats }) => chats.messages[id]);
+  const messageSub = useSelector(({ chats }) => chats.regMessageSub[id]);
   const joinedUsers = activeChat?.joinedUsers;
 
   useEffect(() => {
     const unsubscribe = dispatch(subscribeToChat(id));
+
+    if (!messageSub) {
+      const unsubscribeFromMessages = dispatch(subscribeToMessage(id));
+      dispatch(registerMessageSubscription(id, unsubscribeFromMessages));
+    }
+
     return () => {
       unsubscribe();
       unsubscribeFromJoinedUsers();
@@ -50,6 +66,15 @@ function Chat() {
     );
   }, [peopleWatchers.current]);
 
+  const sendMessage = useCallback(
+    (message) => {
+      dispatch(sendChatMessage(message, id)).then((_) =>
+        endOfMessageList.current.scrollIntoView(false)
+      );
+    },
+    [id]
+  );
+
   if (!activeChat?.id) {
     return <LoadingView message="Loading Chat....." />;
   }
@@ -62,7 +87,8 @@ function Chat() {
 
       <div className="col-9 fh">
         <ViewTitle text={`Channel: ${activeChat?.name} `} />
-        <ChatMessages />
+        <ChatMessages innerRef={endOfMessageList} messages={messages || []} />
+        <SendMessage onSubmit={sendMessage} />
       </div>
     </div>
   );

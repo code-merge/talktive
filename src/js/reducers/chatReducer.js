@@ -33,22 +33,22 @@ function createChatReducer() {
   const activeChats = createReducer(
     {},
     {
-      'CHAT_SET_ACTIVE_CHAT': (state, action) => {
+      CHAT_SET_ACTIVE_CHAT: (state, action) => {
         const { chat } = action;
         state[chat.id] = chat;
       },
 
-      'CHAT_UPDATE_USER_STATE': (state, action) => {
+      CHAT_UPDATE_USER_STATE: (state, action) => {
         const { user, chatId } = action;
         const joinedUsers = state[chatId].joinedUsers;
-        const index = joinedUsers.findIndex(juser => juser.uid === user.uid);
+        const index = joinedUsers.findIndex((juser) => juser.uid === user.uid);
         // user not found
         if (index < 0) {
           return state;
         }
         //if state of user is same as previous
         const userState = joinedUsers[index].state;
-        
+
         if (userState === user.state) {
           return state;
         }
@@ -58,10 +58,31 @@ function createChatReducer() {
     }
   );
 
+  const messages = createReducer(
+    {},
+    {
+      CHAT_SET_MESSAGES: (state, action) => {
+        const prevMessages = state[action.chatId] || [];
+        state[action.chatId] = [...prevMessages, ...action.messages];
+      },
+    }
+  );
+
+  const regMessageSub = (state = {}, action) => {
+    switch (action.type) {
+      case "CHAT_REG_MESSAGE_SUB":
+        return { ...state, [action.chatId]: action.sub };
+      default:
+        return state;
+    }
+  };
+
   return combineReducers({
     joined,
     available,
     activeChats,
+    messages,
+    regMessageSub,
   });
 }
 
