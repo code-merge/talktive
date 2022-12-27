@@ -41,18 +41,12 @@ function Settings() {
                 />
                 <label className="form-check-label">Enable Notification</label>
               </div>
-              <div className="form-check">
-                <input
-                  checked={playSound}
-                  onChange={handleChange}
-                  name="playSound"
-                  type="checkbox"
-                  className="form-check-input"
-                />
-                <label className="form-check-label">Sound notification</label>
-              </div>
             </div>
-            <button type="button" onClick={() => {}} className="btn btn-danger">
+            <button
+              type="button"
+              onClick={() => electron_preload.appApi.quitApp()}
+              className="btn btn-danger"
+            >
               Quit App
             </button>
           </div>

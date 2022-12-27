@@ -3,7 +3,6 @@ import StorageUtil from "../utils/StorageUtil";
 const INITIAL_STATE = {
   isDarkTheme: false,
   showNotifications: true,
-  playSound: true,
   savable: true,
 };
 

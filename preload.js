@@ -1,15 +1,15 @@
+const { ipcRenderer, contextBridge } = require("electron");
 
-const { ipcRenderer, contextBridge } = require('electron');
-
-contextBridge.exposeInMainWorld('electron_preload', {
-
-    notificationApi:{
-        sendNotification(message) {
-            ipcRenderer.send('notify', message);
-        }
+contextBridge.exposeInMainWorld("electron_preload", {
+  notificationApi: {
+    sendNotification(message) {
+      ipcRenderer.send("notify", message);
     },
+  },
 
-    batteryApi:{
-
-    }
-})
+  appApi: {
+    quitApp() {
+      ipcRenderer.send("app-quit");
+    },
+  },
+});
