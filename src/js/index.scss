@@ -44,6 +44,23 @@ body {
     background-color: $gray-900;
     color: white;
 
+    .card-body {
+      color: black;
+    }
+
+    .items .item.active-item,
+    .item:hover {
+      background-color: black;
+      /* Fallback Color */
+      background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        from(#333e44),
+        to(#252e33)
+      );
+    }
+
     .chat-container li .chat-text-wrapper {
       background: #4d4d4d;
     }
@@ -499,7 +516,7 @@ ul {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: $gray-700;
   z-index: 990;
 
   .loading-view {
@@ -529,5 +546,20 @@ ul {
         max-width: 480px;
       }
     }
+  }
+}
+
+.dark {
+  .loading-screen {
+    color: white;
+  }
+
+  .loading-view-container {
+    background-color: $gray-900;
+  }
+
+  .double-bounce1,
+  .double-bounce2 {
+    background-color: white;
   }
 }
