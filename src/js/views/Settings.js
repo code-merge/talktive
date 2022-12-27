@@ -10,8 +10,6 @@ function Settings() {
     ({ settings }) => settings
   );
 
-  debugger;
-
   const handleChange = ({ target: { checked, name } }) => {
     dispatch(updateSettings(name, checked));
   };

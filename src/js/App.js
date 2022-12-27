@@ -20,6 +20,7 @@ import LoadingView from "./components/shared/LoadingView";
 import { listenToConnectionChanges } from "./actions/appActions";
 import ChatCreate from "./views/ChatCreate";
 import { checkUserConnection } from "./actions/connectionAction";
+import { loadInitialSettings } from "./actions/settingsActions";
 
 function AuthRoute({ children, ...rest }) {
   const user = useSelector(({ auth }) => auth.user);
@@ -52,6 +53,7 @@ function TalktiveApp() {
   const user = useSelector(({ auth }) => auth.user);
 
   useEffect(() => {
+    dispatch(loadInitialSettings());
     const unsubscribeFromAuth = dispatch(listenAuthChanges());
     const unsubscribeFromConnection = dispatch(listenToConnectionChanges());
 
