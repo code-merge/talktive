@@ -4,6 +4,7 @@ import appReducer from "../reducers/appReducer";
 import authReducer from "../reducers/authReducer";
 
 import chatReducer from "../reducers/chatReducer";
+import settingsReducer from "../reducers/settingsReducer";
 
 import appMiddleware from "./middleware/appMiddleware";
 
@@ -13,6 +14,7 @@ function configStore() {
     chats: chatReducer,
     auth: authReducer,
     app: appReducer,
+    settings: settingsReducer,
   });
 
   const rootReducer = (state, action) => {
