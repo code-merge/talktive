@@ -1,43 +1,42 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { logoutUser } from "../actions/authActions";
-import BackButton from "./shared/BackButton";
+import Logo from "./Logo";
+import BackButton from "./shared/Buttons/BackButton";
+import LogoutButton from "./shared/Buttons/LogoutButton";
+import SettingsButton from "./shared/Buttons/SettingsButton";
+
+import "../../resources/styles/NavBarStyle.scss";
+import SearchChat from "./ChatSearch";
 
 function NavBar({ backEnabled, view }) {
   const dispatch = useDispatch();
 
   const user = useSelector(({ auth }) => auth.user);
+  const { isDarkTheme } = useSelector(({ settings }) => settings);
 
   return (
     <>
-      <div className="chat-navbar">
-        <nav className="chat-navbar-inner">
-          <div className="chat-navbar-inner-left">
-            {backEnabled && <BackButton />}
+      <div className={`chat-navbar ${isDarkTheme ? "dark" : "light"}`}>
+        <div className="left-side">
+          {!backEnabled && <Logo theme={isDarkTheme} />}
+          {backEnabled && <BackButton theme={isDarkTheme} />}
+          <SearchChat theme={isDarkTheme} />
+        </div>
 
-            {view !== "Settings" && (
-              <Link to="/settings" className="btn btn-outline-success ml-2">
-                Settings
-              </Link>
-            )}
-          </div>
-
-          <div className="chat-navbar-inner-right">
-            {user && (
-              <>
-                <img className="avatar mr-2" src={user.avatar}></img>
-                <span className="logged-in-user">Hi {user.username}</span>
-                <button
-                  onClick={() => dispatch(logoutUser(user.uid))}
-                  className="btn btn-outline-danger ml-2"
-                >
-                  Logout
-                </button>
-              </>
-            )}
-          </div>
-        </nav>
+        <div className="right-side">
+          {user && (
+            <>
+              {view !== "Settings" && <SettingsButton theme={isDarkTheme} />}
+              <LogoutButton
+                theme={isDarkTheme}
+                dispatch={dispatch}
+                user={user}
+              />
+              <img className="avatar mr-2" src={user.avatar}></img>
+              <span className="logged-in-user">Hi {user.username}</span>
+            </>
+          )}
+        </div>
       </div>
     </>
   );

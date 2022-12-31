@@ -8,7 +8,7 @@ function JoinedChats({ chats }) {
 
   return (
     <div className="list-container">
-      <SearchChat />
+      
       <ul className="items">
         {chats.map((chat) => (
           <li

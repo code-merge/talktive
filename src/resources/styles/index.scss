@@ -322,46 +322,6 @@ ul {
   }
 }
 
-.chat-navbar {
-  position: absolute;
-  padding: 16px;
-  top: 0;
-  border-bottom: 1px solid #e6ecf3;
-  gap: 10px;
-  width: 100%;
-
-  &-inner {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 10px;
-
-    &-left {
-      display: flex;
-      gap: 10px;
-    }
-
-    &-right {
-      display: flex;
-      gap: 10px;
-    }
-
-    .avatar {
-      vertical-align: middle;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-    }
-
-    .logged-in-user {
-      display: flex;
-      align-self: center;
-      font-weight: bold;
-      gap: 10px;
-    }
-  }
-}
-
 .dark {
   .loading-screen {
     color: white;

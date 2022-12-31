@@ -1,0 +1,114 @@
+@import "./colors.scss";
+
+.chat-navbar {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  padding: 10px, 20px;
+  top: 0;
+  height: 80px;
+  background-color: white;
+  border-bottom: 1px solid $gray-700;
+  transition: background-color 1s;
+
+  .left-side {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    gap: 10px;
+
+    .logo-container {
+      align-items: center;
+      display: flex;
+
+      .logo {
+        font-size: 20px;
+        font-weight: bold;
+        font-family: "balsamiq_sansbold", "noto_sansbold", sans-serif;
+        color: black;
+        display: flex;
+        align-items: center;
+        margin: 5px;
+
+        &.dark {
+          color: $color-primary-select;
+        }
+      }
+
+      @media (max-width: 767px) {
+        display: none;
+      }
+    }
+
+    .chat-search-box {
+      display: flex;
+
+      .searchBar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid $gray-700;
+        border-radius: 10px;
+        background-color: white;
+        padding: 8px;
+        transition: background-color 1s;
+
+        input {
+          height: 20px;
+          width: 350px;
+          border: none;
+          background-color: white;
+          transition: background-color 1s;
+          color: black;
+        }
+
+        .searchIcon {
+        }
+
+        &.dark {
+          border: 1px solid $gray-500;
+          background-color: $color-secondary-darker;
+
+          input {
+            background-color: $color-secondary-darker;
+            color: $gray-500;
+          }
+        }
+
+        @media (max-width: 767px) {
+          input {
+            width: 250px;
+          }
+        }
+      }
+    }
+  }
+
+  .right-side {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    gap: 15px;
+
+    .avatar {
+      vertical-align: middle;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+    }
+
+    .logged-in-user {
+      display: flex;
+      align-self: center;
+      font-weight: bold;
+      gap: 10px;
+      margin-right: 10px;
+    }
+  }
+
+  &.dark {
+    background-color: $color-secondary;
+  }
+}

@@ -1,9 +1,8 @@
-@import '../colors.scss';
+@import "../colors.scss";
 
 .settings-button-light {
   flex: auto;
   align-items: center;
-  margin: 10px;
   color: gray;
 }
 
@@ -14,8 +13,7 @@
 .settings-button-dark {
   flex: auto;
   align-items: center;
-  margin: 10px;
-  color: gray;
+  color: $gray-500;
 }
 
 .settings-button-dark:hover {
@@ -37,7 +35,7 @@
   flex: auto;
   align-items: center;
   margin: 10px;
-  color: gray;
+  color: $gray-500;
 }
 
 .logout-button-dark:hover {
@@ -67,9 +65,39 @@
   flex: auto;
   align-items: center;
   margin: 10px;
-  color: gray;
+  color: $gray-500;
 }
 
 .newchat-button-dark:hover {
   color: $color-primary-select;
+}
+
+.back-button-light {
+  flex: auto;
+  align-items: center;
+  margin: 10px;
+  color: gray;
+}
+
+.back-button-light:hover {
+  color: black;
+}
+
+.back-button-dark {
+  flex: auto;
+  align-items: center;
+  margin: 10px;
+  color: $gray-500;
+}
+
+.back-button-dark:hover {
+  color: $color-primary-select;
+}
+
+.back-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
 }
