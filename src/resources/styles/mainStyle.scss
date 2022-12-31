@@ -1,0 +1,34 @@
+@import "./colors.scss";
+
+.content-wrapper-light {
+  height: 100%;
+  background-color: $gray-200;
+  padding-top: 70px;
+  transition: background-color 1s;
+}
+
+.content-wrapper-dark {
+  height: 100%;
+  padding-top: 70px;
+  transition: background-color 1s;
+
+  background-color: $color-primary;
+  color: white;
+
+  .chat-container li .chat-text-wrapper {
+    background: #4d4d4d;
+  }
+
+  .chat-navbar,
+  .chat-name-container {
+    border-bottom: 1px solid $gray-700;
+  }
+
+  .list-container {
+    border-right: 1px solid $gray-700;
+
+    .item {
+      border-bottom: 1px solid $gray-700;
+    }
+  }
+}

@@ -1,0 +1,75 @@
+@import '../colors.scss';
+
+.settings-button-light {
+  flex: auto;
+  align-items: center;
+  margin: 10px;
+  color: gray;
+}
+
+.settings-button-light:hover {
+  color: black;
+}
+
+.settings-button-dark {
+  flex: auto;
+  align-items: center;
+  margin: 10px;
+  color: gray;
+}
+
+.settings-button-dark:hover {
+  color: $color-primary-select;
+}
+
+.logout-button-light {
+  flex: auto;
+  align-items: center;
+  margin: 10px;
+  color: gray;
+}
+
+.logout-button-light:hover {
+  color: black;
+}
+
+.logout-button-dark {
+  flex: auto;
+  align-items: center;
+  margin: 10px;
+  color: gray;
+}
+
+.logout-button-dark:hover {
+  color: $color-primary-select;
+}
+
+.logout-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+.newchat-button-light {
+  flex: auto;
+  align-items: center;
+  margin: 10px;
+  color: gray;
+}
+
+.newchat-button-light:hover {
+  color: black;
+}
+
+.newchat-button-dark {
+  flex: auto;
+  align-items: center;
+  margin: 10px;
+  color: gray;
+}
+
+.newchat-button-dark:hover {
+  color: $color-primary-select;
+}

@@ -7,6 +7,7 @@ import RegisterForm from "../components/RegisterForm";
 function Welcome() {
   const [isLogin, setLoginView] = useState(true);
   const user = useSelector(({ auth }) => auth.user);
+  const { isDarkTheme } = useSelector(({ settings }) => settings);
 
   const footerText = isLogin
     ? ["Don't Have an Account yet? ", "Register"]
@@ -19,9 +20,13 @@ function Welcome() {
   return (
     <div className="centered-view">
       <div className="centered-container">
-        {isLogin ? <LoginForm /> : <RegisterForm />}
+        {isLogin ? (
+          <LoginForm theme={isDarkTheme} />
+        ) : (
+          <RegisterForm theme={isDarkTheme} />
+        )}
 
-        <small className="form-text text-muted mt-2">
+        <small className="form-text mt-8">
           {footerText[0]}
           <span
             onClick={() => setLoginView(!isLogin)}

@@ -22,6 +22,8 @@ import ChatCreate from "./views/ChatCreate";
 import { checkUserConnection } from "./actions/connectionAction";
 import { loadInitialSettings } from "./actions/settingsActions";
 
+import "../resources/styles/mainStyle.scss";
+
 function AuthRoute({ children, ...rest }) {
   const user = useSelector(({ auth }) => auth.user);
 
@@ -45,7 +47,7 @@ const ContentWrapper = ({ children }) => {
   const { isDarkTheme } = useSelector(({ settings }) => settings);
 
   return (
-    <div className={`content-wrapper ${isDarkTheme ? "dark" : "light"}`}>
+    <div className={`content-wrapper-${isDarkTheme ? "dark" : "light"}`}>
       {children}
     </div>
   );
