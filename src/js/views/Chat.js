@@ -27,6 +27,7 @@ function Chat() {
   const messages = useSelector(({ chats }) => chats.messages[id]);
   const messageSub = useSelector(({ chats }) => chats.regMessageSub[id]);
   const joinedUsers = activeChat?.joinedUsers;
+  const { isDarkTheme } = useSelector(({ settings }) => settings);
 
   useEffect(() => {
     const unsubscribe = dispatch(subscribeToChat(id));
@@ -80,15 +81,12 @@ function Chat() {
   }
 
   return (
-    <div className="row no-gutters fh">
-      <div className="col-3 fh">
-        <ChatUserList users={activeChat?.joinedUsers} />
-      </div>
-
-      <div className="col-9 fh">
+    <div className="content-window-horizontal">
+      <ChatUserList users={activeChat?.joinedUsers} theme={isDarkTheme} />
+      <div className="content-window-vertical">
         <ViewTitle text={`Channel: ${activeChat?.name} `} />
         <ChatMessages innerRef={endOfMessageList} messages={messages || []} />
-        <SendMessage onSubmit={sendMessage} />
+        <SendMessage onSubmit={sendMessage} theme={isDarkTheme} />
       </div>
     </div>
   );

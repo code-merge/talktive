@@ -3,13 +3,13 @@
 .content-wrapper-light {
   height: 100%;
   background-color: $gray-200;
-  padding-top: 70px;
+  padding-top: 80px;
   transition: background-color 1s;
 }
 
 .content-wrapper-dark {
   height: 100%;
-  padding-top: 70px;
+  padding-top: 80px;
   transition: background-color 1s;
 
   background-color: $color-primary;
@@ -17,11 +17,6 @@
 
   .chat-container li .chat-text-wrapper {
     background: #4d4d4d;
-  }
-
-  .chat-navbar,
-  .chat-name-container {
-    border-bottom: 1px solid $gray-700;
   }
 
   .list-container {

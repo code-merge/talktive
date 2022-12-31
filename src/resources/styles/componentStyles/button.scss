@@ -50,26 +50,50 @@
   padding: 0;
 }
 
-.newchat-button-light {
-  flex: auto;
+.create-new-chat {
+  display: flex;
   align-items: center;
-  margin: 10px;
-  color: gray;
-}
+  justify-content: center;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  width: 150px;
+  height: 40px;
+  gap: 10px;
+  text-decoration: none;
 
-.newchat-button-light:hover {
-  color: black;
-}
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
 
-.newchat-button-dark {
-  flex: auto;
-  align-items: center;
-  margin: 10px;
-  color: $gray-500;
-}
+  .newchat-button-light {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
 
-.newchat-button-dark:hover {
-  color: $color-primary-select;
+  .newchat-button-dark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+  }
+
+  &.dark {
+    background-color: $color-primary-select;
+    color: black;
+  }
+
+  @media (max-width: 767px) {
+    width: 60px;
+    span {
+      display: none;
+    }
+  }
 }
 
 .back-button-light {

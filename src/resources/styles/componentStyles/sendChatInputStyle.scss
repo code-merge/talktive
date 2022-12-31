@@ -1,0 +1,30 @@
+@import "../colors.scss";
+
+.form-control {
+
+  &.dark {
+    color: white;
+    background-color: $gray-900;
+  }
+}
+
+.form-control:active {
+  &.dark {
+    color: white;
+    background-color: $gray-900;
+  }
+}
+
+.form-control:hover {
+  &.dark {
+    color: white;
+    background-color: $gray-900;
+  }
+}
+
+.form-control:focus {
+  &.dark {
+    color: white;
+    background-color: $gray-900;
+  }
+}

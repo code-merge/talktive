@@ -6,7 +6,7 @@ import { withBaseLayout } from "../layouts/baseLayout";
 function Settings() {
   const dispatch = useDispatch();
 
-  const { isDarkTheme, showNotifications, playSound } = useSelector(
+  const { isDarkTheme, showNotifications } = useSelector(
     ({ settings }) => settings
   );
 

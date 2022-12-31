@@ -1,0 +1,83 @@
+@import "./colors.scss";
+
+.content-wrapper-ava-chats-light {
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(138, 136, 136, 0.2);
+    transition: 0.3s;
+    border-radius: 10px;
+  }
+
+  .card-body {
+    color: black;
+  }
+
+  .card-title {
+    font-size: large;
+    font-weight: 550;
+    font-family: "balsamiq_sansbold";
+  }
+
+  .card-text {
+    font-size: medium;
+    font-family: "balsamiq_sansregular";
+  }
+
+  .btn-custom {
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+    padding: 5px 15px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    border-color: black;
+  }
+
+  .btn-custom:hover {
+    background-color: black;
+    color: white;
+  }
+}
+
+.content-wrapper-ava-chats-dark {
+  .card {
+    background-color: $color-secondary;
+    box-shadow:
+        /* offset-x | offset-y | blur-radius | spread-radius | color */ 0px
+        6px 10px 0px hsla(0, 0%, 0%, 0.14),
+      0px 1px 18px 0px hsla(0, 0%, 0%, 0.12),
+      0px 3px 5px -1px hsla(0, 0%, 0%, 0.2);
+  }
+
+  .card-body {
+    color: white;
+  }
+
+  .card-title {
+    font-size: large;
+    font-weight: 550;
+    font-family: "balsamiq_sansbold";
+  }
+
+  .card-text {
+    font-size: medium;
+    font-family: "balsamiq_sansregular";
+  }
+
+  .btn-custom {
+    border: 2px solid black;
+    background-color: $color-secondary;
+    color: white;
+    padding: 5px 15px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    border-color: $color-primary-select;
+    color: $color-primary-select;
+  }
+
+  .btn-custom:hover {
+    background-color: $color-primary-select;
+    color: black;
+  }
+}

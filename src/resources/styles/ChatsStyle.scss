@@ -1,0 +1,137 @@
+@import "./colors.scss";
+
+.users-container {
+  overflow: auto;
+  height: 100%;
+}
+
+.chat-container {
+  position: relative;
+  padding: 1rem;
+  overflow-y: auto;
+  height: 70%;
+}
+
+.chat-input {
+  position: absolute;
+  width: 75%;
+  bottom: 0;
+  padding: 20px;
+}
+
+.chat-container li.chat-left,
+.chat-container li.chat-right {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  margin-bottom: 40px;
+}
+
+.chat-container li img {
+  width: 48px;
+  height: 48px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+}
+
+.chat-container li .chat-avatar {
+  margin-right: 20px;
+}
+
+.chat-container li.chat-right {
+  justify-content: flex-end;
+}
+
+.chat-container li.chat-right > .chat-avatar {
+  margin-right: 20px;
+}
+
+.chat-container li .chat-name {
+  font-size: 0.75rem;
+  color: #999999;
+  text-align: center;
+}
+
+.chat-container li .chat-text-wrapper {
+  padding: 0.4rem 1rem;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background: #ffffff;
+  font-weight: 300;
+  line-height: 150%;
+  position: relative;
+  max-width: 55%;
+  font-size: 0.9rem;
+}
+
+.chat-spacer {
+  width: 50px;
+  display: inline-block;
+}
+
+.chat-hour {
+  float: right;
+  font-size: 10px;
+}
+
+.chat-container li.chat-right {
+  &.dark {
+    .chat-text-wrapper {
+      color: black;
+      background-color: $color-primary-select;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .chat-container li .chat-text-wrapper {
+    max-width: 75%;
+  }
+  .chat-container li img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .chat-container li.chat-left .chat-avatar {
+    margin: 0 0 5px 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .chat-container li.chat-left .chat-name {
+    margin-left: 5px;
+  }
+  .chat-container li.chat-right .chat-avatar {
+    order: -1;
+    margin: 0 0 5px 0;
+    align-items: center;
+    display: flex;
+    justify-content: right;
+    flex-direction: row-reverse;
+  }
+
+  .chat-container li.chat-right .chat-name {
+    margin-right: 5px;
+  }
+  .chat-container li .chat-text-wrapper {
+    font-size: 0.8rem;
+  }
+}
+
+.chat-form {
+  padding: 15px;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  border-top: 1px solid white;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

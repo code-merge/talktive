@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { createTimestamp } from "../utils/timestamp";
+import "../../resources/styles/componentStyles/sendChatInputStyle.scss";
 
-function SendMessage({ onSubmit }) {
+function SendMessage({ onSubmit, theme }) {
   const [ipvalue, setIpvalue] = useState("");
 
   const onKeyPress = (event) => {
@@ -30,9 +31,9 @@ function SendMessage({ onSubmit }) {
       <textarea
         onChange={(event) => setIpvalue(event.target.value)}
         onKeyPress={onKeyPress}
-        className="form-control"
+        className={`form-control ${theme ? "dark" : "light"}`}
         value={ipvalue}
-        rows="3"
+        rows="2"
         placeholder="Type your Message Here"
       ></textarea>
     </div>

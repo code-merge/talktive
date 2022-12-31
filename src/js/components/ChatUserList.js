@@ -1,16 +1,13 @@
 import React from "react";
+import "../../resources/styles/listStyles.scss";
 
-function ChatUserList({ users = [] }) {
+function ChatUserList({ users = [], theme }) {
   return (
-    <div className="list-container">
-      <div className="chat-search-box">
-        <div className="input-group">
-          <input className="form-control" placeholder="Search" />
-        </div>
-      </div>
+    <div className={`list-container ${theme ? "dark" : "light"}`}>
+      <span className="chat-span">Participants</span>
       <ul className="items">
         {users.map((user) => (
-          <li key={user.uid} className="item">
+          <li key={user.uid} className={`item ${theme ? "dark" : "light"}`}>
             <div className="item-status">
               <img src={user.avatar} alt="Retail Admin" />
               <span className={`status : ${user.state}`}></span>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import '../../../resources/styles/NavBarStyle.scss'
 
 function ViewTitle({ text, children }) {
   return (
