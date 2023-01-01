@@ -69,6 +69,18 @@
         border-radius: 5px;
         border: none;
       }
+
+      .form-check{
+
+        display: flex;
+        gap: 30px;
+      }
+
+      .form-check-input {
+        width: 20px;
+        height: 20px;
+        gap: 20px;
+      }
     }
 
     .header {
@@ -85,12 +97,6 @@
       }
     }
 
-    label {
-      font-size: 12px;
-      margin-bottom: 5px;
-      color: $gray-700;
-    }
-
     &.dark {
       background-color: $color-secondary-darker;
 
@@ -102,7 +108,7 @@
 
       input {
         --bs-text-opacity: 1;
-        background-color: #1f2029;
+        background-color: $color-input;
         border: none;
         color: white;
         outline: 0;

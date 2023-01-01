@@ -4,27 +4,27 @@
 
   &.dark {
     color: white;
-    background-color: $gray-900;
+    background-color: $color-input;
   }
 }
 
 .form-control:active {
   &.dark {
     color: white;
-    background-color: $gray-900;
+    background-color: $color-input;
   }
 }
 
 .form-control:hover {
   &.dark {
     color: white;
-    background-color: $gray-900;
+    background-color: $color-input;
   }
 }
 
 .form-control:focus {
   &.dark {
     color: white;
-    background-color: $gray-900;
+    background-color: $color-input;
   }
 }

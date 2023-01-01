@@ -110,6 +110,8 @@
 
   &.dark {
     background-color: $color-secondary;
+    border-bottom: 1px solid $gray-700;
+
   }
 }
 
@@ -120,6 +122,12 @@
   padding: 20px;
   border-bottom: 1px solid $gray-500;
   width: 100%;
+
+  &.dark{
+
+    border-bottom: 1px solid $gray-900;
+
+  }
 
   span.name {
     font-weight: 600;

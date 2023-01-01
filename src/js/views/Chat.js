@@ -16,6 +16,7 @@ import ViewTitle from "../components/shared/ViewTitle";
 import LoadingView from "../components/shared/LoadingView";
 import { withBaseLayout } from "../layouts/baseLayout";
 import SendMessage from "../components/SendMessage";
+import ChatHeader from "../components/shared/ChatHeader";
 
 function Chat() {
   const { id } = useParams();
@@ -84,7 +85,12 @@ function Chat() {
     <div className="content-window-horizontal">
       <ChatUserList users={activeChat?.joinedUsers} theme={isDarkTheme} />
       <div className="content-window-vertical">
-        <ViewTitle text={`Channel: ${activeChat?.name} `} />
+        {/*<ViewTitle text={`Channel: ${activeChat?.name} `} />*/}
+        <ChatHeader
+          image={activeChat?.image}
+          name={activeChat?.name}
+          theme={isDarkTheme}
+        />
         <ChatMessages innerRef={endOfMessageList} messages={messages || []} />
         <SendMessage onSubmit={sendMessage} theme={isDarkTheme} />
       </div>

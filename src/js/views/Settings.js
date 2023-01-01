@@ -17,7 +17,11 @@ function Settings() {
   return (
     <div className="centered-view">
       <div className="centered-container">
-        <form className="centered-container-form">
+        <form
+          className={`centered-container-form ${
+            isDarkTheme ? "dark" : "light"
+          }`}
+        >
           <div className="header">Adjust application settings</div>
           <div className="form-container">
             <div className="my-3">
