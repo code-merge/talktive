@@ -2,6 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Loader from "./Loader";
 
+import "../../../resources/styles/LoadingStyle.scss";
+
 function LoadingView({ message = "Loading ...." }) {
   const isDarkTheme = useSelector(({ settings }) => settings.isDarkTheme);
 
