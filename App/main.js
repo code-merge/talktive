@@ -25,6 +25,11 @@ function createMainWindow() {
   }
 }
 
+function createMenu() {
+  const template = require("./appUtils/Menu").createTemplate(app);
+  const menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu);
+}
 
 if (isDev) {
   require("electron-reload")(__dirname, {
@@ -33,6 +38,7 @@ if (isDev) {
 }
 
 app.whenReady().then(() => {
+  createMenu();
   createMainWindow();
 });
 
