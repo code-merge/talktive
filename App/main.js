@@ -2,6 +2,7 @@ const { app, BrowserWindow, Notification, ipcMain, Menu } = require("electron");
 const path = require("path");
 
 const isDev = !app.isPackaged;
+const dockIcon = path.join(__dirname, "assets", "logo.png");
 
 function createMainWindow() {
   const window = new BrowserWindow({
@@ -25,6 +26,27 @@ function createMainWindow() {
   }
 }
 
+function createSplashWindow() {
+  const window = new BrowserWindow({
+    width: 1200,
+    height: 600,
+    backgroundColor: "white",
+    webPreferences: {
+      nodeIntegration: false,
+      worldSafeExecuteJavaScript: true,
+      contextIsolation: true,
+    },
+  });
+
+  const loadFilePath = path.join(__dirname, "splash.html");
+
+  window.loadFile(loadFilePath);
+
+  if (isDev) {
+    window.webContents.openDevTools();
+  }
+}
+
 function createMenu() {
   const template = require("./appUtils/Menu").createTemplate(app);
   const menu = Menu.buildFromTemplate(template);
@@ -37,9 +59,16 @@ if (isDev) {
   });
 }
 
+//Dock Icon for MAC machines
+
+if (process.platform === "darwin") {
+  app.dock.setIcon(dockIcon);
+}
+
 app.whenReady().then(() => {
   createMenu();
   createMainWindow();
+  //createSplashWindow();
 });
 
 //Window behavior handling for MacOs.
