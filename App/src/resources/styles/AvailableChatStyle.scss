@@ -14,12 +14,12 @@
   .card-title {
     font-size: large;
     font-weight: 550;
-    font-family: "balsamiq_sansbold";
+    font-family: "noto_sanssemibold";
   }
 
   .card-text {
     font-size: medium;
-    font-family: "balsamiq_sansregular";
+    font-family: "noto_sansregular";
   }
 
   .btn-custom {
@@ -31,6 +31,7 @@
     cursor: pointer;
     border-radius: 8px;
     border-color: black;
+    font-family: "noto_sansregular";
   }
 
   .btn-custom:hover {
@@ -56,12 +57,12 @@
   .card-title {
     font-size: large;
     font-weight: 550;
-    font-family: "balsamiq_sansbold";
+    font-family: "noto_sanssemibold";
   }
 
   .card-text {
     font-size: medium;
-    font-family: "balsamiq_sansregular";
+    font-family: "noto_sansregular";
   }
 
   .btn-custom {
@@ -74,6 +75,7 @@
     border-radius: 8px;
     border-color: $color-primary-select;
     color: $color-primary-select;
+    font-family: "noto_sansregular";
   }
 
   .btn-custom:hover {

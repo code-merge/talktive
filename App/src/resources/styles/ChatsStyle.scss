@@ -63,7 +63,8 @@
   line-height: 150%;
   position: relative;
   max-width: 55%;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  font-family: "noto_sansregular";
 }
 
 .chat-spacer {
@@ -163,6 +164,7 @@ ul {
     font-size: 18px;
     font-weight: bold;
     gap: 10px;
+    font-family: "noto_sanssemibold";
   }
 
   &.dark {

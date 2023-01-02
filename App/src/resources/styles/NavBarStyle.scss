@@ -103,15 +103,16 @@
       display: flex;
       align-self: center;
       font-weight: bold;
-      gap: 10px;
-      margin-right: 10px;
+      gap: 8px;
+      font-family: "noto_sansregular";
+      font-size: 14px;
+      margin-right: 8px;
     }
   }
 
   &.dark {
     background-color: $color-secondary;
     border-bottom: 1px solid $gray-700;
-
   }
 }
 
@@ -123,15 +124,14 @@
   border-bottom: 1px solid $gray-500;
   width: 100%;
 
-  &.dark{
-
+  &.dark {
     border-bottom: 1px solid $gray-900;
-
   }
 
   span.name {
-    font-weight: 600;
+    font-weight: 500;
     align-self: center;
+    font-family: "noto_sansregular";
     font-size: 1.8rem;
   }
 }

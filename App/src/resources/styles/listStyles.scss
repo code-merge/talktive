@@ -22,6 +22,7 @@
     padding: 5px;
     font-size: 26px;
     font-weight: bold;
+    font-family: "noto_sansbold";
   }
 
   .items {
@@ -34,6 +35,7 @@
     padding: 10px 1rem;
     cursor: pointer;
     border-bottom: 1px solid $gray-100;
+    font-family: "noto_sanssemibold";
   }
 
   .items .item.active-item,
