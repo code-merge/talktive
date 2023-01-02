@@ -114,5 +114,5 @@ ipcMain.on("app-quit", () => {
 });
 
 ipcMain.on("notify", (_, message) => {
-  new Notification({ title: "Talktive", body: message }).show();
+  new Notification({ title: "Talkative", body: message }).show();
 });
