@@ -3,7 +3,7 @@ import React from "react";
 function Logo({ theme }) {
     return (
       <div className="logo-container">
-        <h2 className={`logo ${theme ? "dark" : "light"}`}>TALKTIVE</h2>
+        <h2 className={`logo ${theme ? "dark" : "light"}`}>TALKATIVE</h2>
       </div>
     );
   }

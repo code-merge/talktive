@@ -17,7 +17,7 @@ const menu = Menu.buildFromTemplate(template);
 function createMainWindow() {
   const window = new BrowserWindow({
     width: 991,
-    height: 674,
+    height: 685,
     backgroundColor: "white",
     show: false,
     webPreferences: {
