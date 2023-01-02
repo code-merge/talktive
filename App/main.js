@@ -9,8 +9,7 @@ const {
 const path = require("path");
 
 const isDev = !app.isPackaged;
-const dockIcon = path.join(__dirname, "assets", "logo.png");
-const trayIcon = path.join(__dirname, "assets", "logo.png");
+const icon = path.join(__dirname, "assets", "logo.png");
 const template = require("./appUtils/Menu").createTemplate(app);
 const menu = Menu.buildFromTemplate(template);
 
@@ -20,6 +19,7 @@ function createMainWindow() {
     height: 685,
     backgroundColor: "white",
     show: false,
+    icon: icon,
     webPreferences: {
       nodeIntegration: false,
       worldSafeExecuteJavaScript: true,
@@ -73,7 +73,7 @@ if (isDev) {
 //Dock Icon for MAC machines
 
 if (process.platform === "darwin") {
-  app.dock.setIcon(dockIcon);
+  app.dock.setIcon(icon);
 }
 
 let tray = null;
@@ -81,7 +81,7 @@ let tray = null;
 app.whenReady().then(() => {
   createMenu();
 
-  tray = new Tray(trayIcon);
+  tray = new Tray(icon);
   tray.setContextMenu(menu);
 
   const splash = createSplashWindow();
