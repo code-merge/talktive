@@ -1,14 +1,25 @@
-const { app, BrowserWindow, Notification, ipcMain, Menu } = require("electron");
+const {
+  app,
+  BrowserWindow,
+  Notification,
+  ipcMain,
+  Menu,
+  Tray,
+} = require("electron");
 const path = require("path");
 
 const isDev = !app.isPackaged;
 const dockIcon = path.join(__dirname, "assets", "logo.png");
+const trayIcon = path.join(__dirname, "assets", "logo.png");
+const template = require("./appUtils/Menu").createTemplate(app);
+const menu = Menu.buildFromTemplate(template);
 
 function createMainWindow() {
   const window = new BrowserWindow({
     width: 1200,
     height: 600,
     backgroundColor: "white",
+    show: false,
     webPreferences: {
       nodeIntegration: false,
       worldSafeExecuteJavaScript: true,
@@ -24,13 +35,17 @@ function createMainWindow() {
   if (isDev) {
     window.webContents.openDevTools();
   }
+
+  return window;
 }
 
 function createSplashWindow() {
   const window = new BrowserWindow({
-    width: 1200,
-    height: 600,
-    backgroundColor: "white",
+    width: 600,
+    height: 400,
+    backgroundColor: "black",
+    frame: false,
+    transparent: true,
     webPreferences: {
       nodeIntegration: false,
       worldSafeExecuteJavaScript: true,
@@ -38,18 +53,14 @@ function createSplashWindow() {
     },
   });
 
-  const loadFilePath = path.join(__dirname, "splash.html");
+  const loadFilePath = path.join(__dirname, "splashScreen", "splash.html");
 
   window.loadFile(loadFilePath);
 
-  if (isDev) {
-    window.webContents.openDevTools();
-  }
+  return window;
 }
 
 function createMenu() {
-  const template = require("./appUtils/Menu").createTemplate(app);
-  const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
 }
 
@@ -65,10 +76,23 @@ if (process.platform === "darwin") {
   app.dock.setIcon(dockIcon);
 }
 
+let tray = null;
+
 app.whenReady().then(() => {
   createMenu();
-  createMainWindow();
-  //createSplashWindow();
+
+  tray = new Tray(trayIcon);
+  tray.setContextMenu(menu);
+
+  const splash = createSplashWindow();
+  const mainWindow = createMainWindow();
+
+  mainWindow.once("ready-to-show", () => {
+    setTimeout(() => {
+      splash.destroy();
+      mainWindow.show();
+    }, 2000);
+  });
 });
 
 //Window behavior handling for MacOs.
