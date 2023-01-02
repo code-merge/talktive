@@ -3,7 +3,7 @@ const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   mode: "development",
-  entry: "./src/js/index.js",
+  entry: "./App/src/js/index.js",
   devtool: "inline-source-map",
   target: "electron-renderer",
   //externalsPresets: { node: true },

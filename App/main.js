@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Notification, ipcMain } = require("electron");
+const { app, BrowserWindow, Notification, ipcMain, Menu } = require("electron");
 const path = require("path");
 
 const isDev = !app.isPackaged;
@@ -16,20 +16,25 @@ function createMainWindow() {
     },
   });
 
-  window.loadFile("index.html");
+  const loadFilePath = path.join(__dirname, "index.html");
+
+  window.loadFile(loadFilePath);
 
   if (isDev) {
     window.webContents.openDevTools();
   }
 }
 
+
 if (isDev) {
   require("electron-reload")(__dirname, {
-    electron: path.join(__dirname, "node_modules", ".bin", "electron"),
+    electron: path.join(__dirname, "..", "node_modules", ".bin", "electron"),
   });
 }
 
-app.whenReady().then(createMainWindow);
+app.whenReady().then(() => {
+  createMainWindow();
+});
 
 //Window behavior handling for MacOs.
 
