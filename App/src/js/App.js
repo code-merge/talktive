@@ -21,6 +21,7 @@ import { checkUserConnection } from "./frontend/redux/actions/connectionAction";
 import { loadInitialSettings } from "./frontend/redux/actions/settingsActions";
 
 import "../resources/styles/mainStyle.scss";
+import About from "./frontend/components/About";
 
 function AuthRoute({ children, ...rest }) {
   const user = useSelector(({ auth }) => auth.user);
@@ -104,6 +105,9 @@ function TalktiveApp() {
           </AuthRoute>
           <AuthRoute path="/settings">
             <Settings />
+          </AuthRoute>
+          <AuthRoute path="/about">
+            <About />
           </AuthRoute>
           <AuthRoute path="/home">
             <Home />

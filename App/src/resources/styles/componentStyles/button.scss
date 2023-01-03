@@ -128,3 +128,57 @@
   margin: 0;
   padding: 0;
 }
+
+
+
+
+
+
+.about-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  width: 100%;
+  height: 40px;
+  gap: 10px;
+  text-decoration: none;
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-family: "noto_sansregular";
+    font-size: 15.5px;
+    margin-right: 5px;
+  }
+
+  .about-button-light {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .about-button-dark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+  }
+
+  &.dark {
+    background-color: $color-primary-select;
+    color: black;
+  }
+
+  @media (max-width: 767px) {
+    width: 60px;
+    span {
+      display: none;
+    }
+  }
+}

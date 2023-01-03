@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { updateSettings } from "../redux/actions/settingsActions";
 import { withBaseLayout } from "../layouts/baseLayout";
+import AboutButton from "../components/shared/Buttons/AboutButton";
+import "../../../resources/styles/AuthStyle.scss";
 
 function Settings() {
   const dispatch = useDispatch();
@@ -47,10 +49,11 @@ function Settings() {
                 <label className="form-check-label">Enable Notification</label>
               </div>
             </div>
+            <AboutButton theme={isDarkTheme} />
             <button
               type="button"
               onClick={() => electron_preload.appApi.quitApp()}
-              className="btn btn-danger"
+              className="form-btn red"
             >
               Quit App
             </button>
