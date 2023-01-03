@@ -17,6 +17,13 @@
     font-weight: normal;
     font-size: 18px;
   }
+
+  &.dark {
+    h3,
+    h5 {
+      color: white;
+    }
+  }
 }
 
 .developer-info {
@@ -25,5 +32,11 @@
     color: black;
     font-weight: normal;
     font-size: 16px;
+  }
+
+  &.dark {
+    span {
+      color: white;
+    }
   }
 }
